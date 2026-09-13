@@ -51,8 +51,8 @@ const eventos = [
     },
 
     {
-        inicio: "14-10",
-        fin: "14-10",
+        inicio: "14-09",
+        fin: "14-09",
         titulo: "Fecha de Creacion",
         descripcion: "Hoy fue el dia en el que la pagina fue disponible para todos."
     },
