@@ -1,0 +1,365 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background-color: #c8c8c8;
+
+    color: #000000;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   PÁGINA
+========================================== */
+
+.pagina {
+    width: 92%;
+    max-width: 1100px;
+
+    min-height: 90vh;
+
+    margin: 15px auto;
+
+    background-color: #ffffff;
+
+    border: 1px solid #555555;
+
+    box-shadow: 3px 3px 0 #888888;
+}
+
+
+/* ==========================================
+   CABECERA
+========================================== */
+
+.cabecera {
+    background-color: #eeeeee;
+
+    border-bottom: 3px solid #990000;
+
+    padding: 22px 15px;
+
+    text-align: center;
+}
+
+.titulo-web {
+    color: #990000;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.subtitulo {
+    margin-top: 7px;
+
+    color: #555555;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+.contenido {
+    padding: 30px 40px;
+
+    text-align: center;
+}
+
+
+/* ==========================================
+   TÍTULO DE SECCIÓN
+========================================== */
+
+.titulo-seccion {
+    background-color: #990000;
+
+    border: 1px solid #660000;
+
+    color: #ffffff;
+
+    padding: 8px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   ESTADO
+========================================== */
+
+.estado {
+    margin-top: 20px;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    color: #555555;
+}
+
+
+/* ==========================================
+   FECHA
+========================================== */
+
+.fecha {
+    margin-top: 7px;
+
+    color: #333333;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   IMAGEN DE LA ALARMA
+========================================== */
+
+.imagen-alarma {
+    height: 330px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 10px;
+}
+
+.imagen-alarma img {
+    max-width: 420px;
+
+    max-height: 320px;
+
+    border: 0;
+}
+
+
+/* ==========================================
+   INFORMACIÓN DEL EVENTO
+========================================== */
+
+.mensaje {
+    margin: 0 auto;
+
+    max-width: 850px;
+
+    padding: 16px;
+
+    border: 1px solid #bbbbbb;
+
+    background-color: #eeeeee;
+}
+
+.titulo-evento {
+    font-size: 23px;
+
+    font-weight: bold;
+
+    color: #000000;
+}
+
+.descripcion {
+    margin-top: 10px;
+
+    color: #333333;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   SEPARADOR
+========================================== */
+
+.separador {
+    margin: 22px 0;
+
+    color: #999999;
+
+    font-family: "Courier New", monospace;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   PRÓXIMA ALARMA
+========================================== */
+
+.proximo {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 13px;
+
+    background-color: #ffffcc;
+
+    border: 1px solid #cccc99;
+
+    font-size: 14px;
+}
+
+.proximo strong {
+    color: #990000;
+}
+
+
+/* ==========================================
+   NOTA
+========================================== */
+
+.nota {
+    margin-top: 18px;
+
+    color: #777777;
+
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   PIE
+========================================== */
+
+.pie {
+    padding: 9px;
+
+    background-color: #eeeeee;
+
+    border-top: 1px solid #cccccc;
+
+    color: #666666;
+
+    text-align: center;
+
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   CRÉDITO
+========================================== */
+
+.credito {
+    position: fixed;
+
+    right: 8px;
+    bottom: 6px;
+
+    color: #777777;
+
+    font-size: 9px;
+
+    line-height: 12px;
+
+    text-align: right;
+
+    opacity: 0.8;
+}
+
+
+/* ==========================================
+   ALARMA ACTIVA
+========================================== */
+
+body.alarma-activa .estado {
+    color: #cc0000;
+
+    animation: parpadeo 0.8s infinite;
+}
+
+body.alarma-activa .titulo-evento {
+    color: #990000;
+}
+
+body.alarma-activa .titulo-seccion {
+    background-color: #cc0000;
+
+    border-color: #990000;
+}
+
+
+/* ==========================================
+   PARPADEO
+========================================== */
+
+@keyframes parpadeo {
+
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+
+/* ==========================================
+   PANTALLAS PEQUEÑAS
+========================================== */
+
+@media (max-width: 800px) {
+
+    .pagina {
+        width: 96%;
+
+        margin: 8px auto;
+    }
+
+    .contenido {
+        padding: 20px 15px;
+    }
+
+    .titulo-web {
+        font-size: 22px;
+    }
+
+    .imagen-alarma {
+        height: 260px;
+    }
+
+    .imagen-alarma img {
+        max-width: 90%;
+        max-height: 250px;
+    }
+
+    .credito {
+        position: static;
+
+        width: 96%;
+
+        margin: 5px auto;
+
+        text-align: right;
+    }
+
+}
