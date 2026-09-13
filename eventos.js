@@ -1,35 +1,76 @@
 /* ==================================================
    EVENTOS
+   ==================================================
+
+   Puedes hacer alarmas de UN DÍA:
+
+   {
+       inicio: "06-12",
+       fin: "06-12",
+       titulo: "Día de la Constitución",
+       descripcion: "Hoy es el Día de la Constitución."
+   }
+
+
+   O alarmas de VARIOS DÍAS:
+
+   {
+       inicio: "18-03",
+       fin: "19-03",
+       titulo: "Fallas",
+       descripcion: "Hoy son Fallas."
+   }
+
+   Las fechas incluyen tanto el día de inicio
+   como el día de finalización.
+
 ================================================== */
 
-const eventos = {
 
-    "06-12": {
+const eventos = [
+
+    {
+        inicio: "06-12",
+        fin: "06-12",
         titulo: "Día de la Constitución Española",
         descripcion: "Hoy se celebra el Día de la Constitución Española."
     },
 
-    "09-10": {
+    {
+        inicio: "09-10",
+        fin: "09-10",
         titulo: "9 d'Octubre",
         descripcion: "Hui és el Dia de la Comunitat Valenciana."
     },
 
-    "12-10": {
+    {
+        inicio: "12-10",
+        fin: "12-10",
         titulo: "Día de la Hispanidad",
         descripcion: "Hoy es el Día de la Fiesta Nacional de España."
     },
 
-    "25-12": {
+    {
+        inicio: "18-03",
+        fin: "19-03",
+        titulo: "Fallas",
+        descripcion: "Hoy son Fallas."
+    },
+
+    {
+        inicio: "25-12",
+        fin: "25-12",
         titulo: "Navidad",
         descripcion: "Hoy es Navidad."
     }
 
-};
+];
 
 
 /* ==================================================
-   FUNCIONES
+   NO ES NECESARIO EDITAR NADA DEBAJO
 ================================================== */
+
 
 const alarma = document.getElementById("alarma");
 const estado = document.getElementById("estado");
@@ -39,19 +80,93 @@ const fecha = document.getElementById("fecha");
 const proximo = document.getElementById("proximo");
 
 
+/* --------------------------------------------------
+   CONVERTIR DD-MM EN FECHA
+-------------------------------------------------- */
+
+function convertirFecha(texto, año) {
+
+    const partes = texto.split("-");
+
+    const dia = Number(partes[0]);
+    const mes = Number(partes[1]);
+
+    return new Date(
+        año,
+        mes - 1,
+        dia
+    );
+}
+
+
+/* --------------------------------------------------
+   OBTENER FECHA ACTUAL
+-------------------------------------------------- */
+
 function obtenerFechaActual() {
 
     const ahora = new Date();
 
-    const dia =
-        String(ahora.getDate()).padStart(2, "0");
-
-    const mes =
-        String(ahora.getMonth() + 1).padStart(2, "0");
-
-    return `${dia}-${mes}`;
+    return {
+        dia: ahora.getDate(),
+        mes: ahora.getMonth() + 1,
+        año: ahora.getFullYear()
+    };
 }
 
+
+/* --------------------------------------------------
+   COMPROBAR SI UNA ALARMA ESTÁ ACTIVA
+-------------------------------------------------- */
+
+function estaActiva(evento) {
+
+    const ahora = new Date();
+
+    const inicio =
+        convertirFecha(
+            evento.inicio,
+            ahora.getFullYear()
+        );
+
+    const fin =
+        convertirFecha(
+            evento.fin,
+            ahora.getFullYear()
+        );
+
+    /*
+       Ponemos el final del día a las 23:59:59
+       para que el último día también cuente.
+    */
+
+    fin.setHours(23, 59, 59, 999);
+
+    return ahora >= inicio && ahora <= fin;
+}
+
+
+/* --------------------------------------------------
+   BUSCAR EVENTO ACTUAL
+-------------------------------------------------- */
+
+function obtenerEventoActual() {
+
+    for (const evento of eventos) {
+
+        if (estaActiva(evento)) {
+            return evento;
+        }
+
+    }
+
+    return null;
+}
+
+
+/* --------------------------------------------------
+   FECHA BONITA
+-------------------------------------------------- */
 
 function obtenerFechaBonita() {
 
@@ -79,16 +194,17 @@ function obtenerFechaBonita() {
 
 function comprobarAlarma() {
 
-    const fechaActual =
-        obtenerFechaActual();
-
     const evento =
-        eventos[fechaActual];
+        obtenerEventoActual();
 
 
     fecha.textContent =
         obtenerFechaBonita();
 
+
+    /* ----------------------------------------------
+       HAY ALARMA
+    ---------------------------------------------- */
 
     if (evento) {
 
@@ -112,10 +228,15 @@ function comprobarAlarma() {
             evento.descripcion;
 
         proximo.innerHTML =
-            "<strong>EVENTO DE HOY:</strong> " +
+            "<strong>EVENTO ACTUAL:</strong> " +
             evento.titulo;
 
     }
+
+
+    /* ----------------------------------------------
+       NO HAY ALARMA
+    ---------------------------------------------- */
 
     else {
 
@@ -146,7 +267,7 @@ function comprobarAlarma() {
 
 
 /* ==================================================
-   PRÓXIMA ALARMA
+   BUSCAR PRÓXIMA ALARMA
 ================================================== */
 
 function mostrarProximoEvento() {
@@ -159,40 +280,33 @@ function mostrarProximoEvento() {
         Infinity;
 
 
-    for (const fechaEvento in eventos) {
+    for (const evento of eventos) {
 
-        const partes =
-            fechaEvento.split("-");
-
-        const dia =
-            Number(partes[0]);
-
-        const mes =
-            Number(partes[1]);
-
-
-        let fechaObjetivo =
-            new Date(
-                ahora.getFullYear(),
-                mes - 1,
-                dia
+        let fechaInicio =
+            convertirFecha(
+                evento.inicio,
+                ahora.getFullYear()
             );
 
 
-        if (fechaObjetivo < ahora) {
+        /*
+           Si el evento ya pasó este año,
+           buscamos el del año siguiente.
+        */
 
-            fechaObjetivo =
-                new Date(
-                    ahora.getFullYear() + 1,
-                    mes - 1,
-                    dia
+        if (fechaInicio < ahora) {
+
+            fechaInicio =
+                convertirFecha(
+                    evento.inicio,
+                    ahora.getFullYear() + 1
                 );
 
         }
 
 
         const diferencia =
-            fechaObjetivo - ahora;
+            fechaInicio - ahora;
 
 
         if (diferencia < menorDiferencia) {
@@ -201,8 +315,8 @@ function mostrarProximoEvento() {
                 diferencia;
 
             proximoEvento = {
-                fecha: fechaObjetivo,
-                evento: eventos[fechaEvento]
+                fecha: fechaInicio,
+                evento: evento
             };
 
         }
@@ -242,14 +356,15 @@ function mostrarProximoEvento() {
 
 
 /* ==================================================
-   INICIO
+   INICIAR
 ================================================== */
 
 comprobarAlarma();
 
 
 /*
-   Comprueba el día cada minuto.
+   Comprobar cada minuto para detectar
+   automáticamente el cambio de día.
 */
 
 setInterval(
