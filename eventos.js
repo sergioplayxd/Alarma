@@ -37,8 +37,8 @@ const eventos = [
     },
 
     {
-        inicio: "10-09",
-        fin: "10-09",
+        inicio: "09-10",
+        fin: "09-10",
         titulo: "9 d'Octubre",
         descripcion: "Hui és el Dia de la Comunitat Valenciana."
     },
@@ -51,8 +51,8 @@ const eventos = [
     },
 
     {
-        inicio: "09-14",
-        fin: "09-14",
+        inicio: "13-09",
+        fin: "13-09",
         titulo: "Fecha de Creacion",
         descripcion: "Hoy fue el dia en el que la pagina fue disponible para todos."
     },
