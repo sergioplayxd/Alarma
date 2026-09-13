@@ -58,8 +58,8 @@ const eventos = [
     },
 
     {
-        inicio: "18-03",
-        fin: "19-03",
+        inicio: "18-02",
+        fin: "19-02",
         titulo: "Fallas",
         descripcion: "Hoy son Fallas."
     },
