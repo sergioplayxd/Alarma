@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alarma de días especiales</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contenedor {
+            max-width: 700px;
+            padding: 30px;
+        }
+
+        #alarma {
+            width: 350px;
+            max-width: 90%;
+        }
+
+        #estado {
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #evento {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+
+        .apagada {
+            opacity: 0.7;
+        }
+
+        .activa {
+            opacity: 1;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <img id="alarma" src="alarma-apagada.png" class="apagada">
+
+    <div id="estado">SIN ALARMA</div>
+
+    <div id="evento">
+        Hoy no hay ningún evento especial.
+    </div>
+
+    <button id="sonido">🔊 Activar sonido</button>
+
+</div>
+
+
+<script>
+
+    // ==========================================
+    // CONFIGURACIÓN DE EVENTOS
+    // ==========================================
+
+    const eventos = {
+
+        "06-12": {
+            nombre: "Día de la Constitución Española",
+            descripcion: "Hoy es el Día de la Constitución Española."
+        },
+
+        "09-10": {
+            nombre: "9 d'Octubre",
+            descripcion: "Día de la Comunitat Valenciana."
+        },
+
+        "19-11": {
+            nombre: "Evento especial",
+            descripcion: "Hoy ocurre algo especial."
+        },
+
+        "11-11": {
+            nombre: "Otro evento",
+            descripcion: "Descripción del evento."
+        }
+
+    };
+
+
+    // ==========================================
+    // IMÁGENES
+    // ==========================================
+
+    const GIF_ALARMA =
+        "https://i.pinimg.com/originals/b7/5e/b0/b75eb08c8f2aee61d071c6c63c1f0801.gif";
+
+    const IMAGEN_APAGADA =
+        "alarma-apagada.png";
+
+
+    // ==========================================
+    // COMPROBAR FECHA
+    // ==========================================
+
+    function comprobarFecha() {
+
+        const ahora = new Date();
+
+        const mes = String(ahora.getMonth() + 1).padStart(2, "0");
+        const dia = String(ahora.getDate()).padStart(2, "0");
+
+        const fecha = `${dia}-${mes}`;
+
+        const alarma = document.getElementById("alarma");
+        const estado = document.getElementById("estado");
+        const evento = document.getElementById("evento");
+
+        const eventoHoy = eventos[fecha];
+
+
+        if (eventoHoy) {
+
+            // ==========================
+            // ALARMA ACTIVA
+            // ==========================
+
+            alarma.src = GIF_ALARMA;
+
+            alarma.classList.remove("apagada");
+            alarma.classList.add("activa");
+
+            estado.textContent = "🚨 ¡ALARMA ACTIVA! 🚨";
+
+            evento.innerHTML =
+                `<strong>${eventoHoy.nombre}</strong><br>
+                 ${eventoHoy.descripcion}`;
+
+        } else {
+
+            // ==========================
+            // ALARMA APAGADA
+            // ==========================
+
+            alarma.src = IMAGEN_APAGADA;
+
+            alarma.classList.remove("activa");
+            alarma.classList.add("apagada");
+
+            estado.textContent = "💤 SIN ALARMA";
+
+            evento.textContent =
+                "Hoy no hay ningún evento especial.";
+        }
+    }
+
+
+    // Comprobar al abrir
+    comprobarFecha();
+
+
+    // Comprobar cada minuto por si cambia el día
+    setInterval(comprobarFecha, 60000);
+
+
+    // ==========================================
+    // SONIDO
+    // ==========================================
+
+    const botonSonido = document.getElementById("sonido");
+
+    const audio = new Audio("alarma.mp3");
+
+    audio.loop = true;
+
+    botonSonido.addEventListener("click", () => {
+
+        audio.play();
+
+        botonSonido.textContent = "🔊 Sonido activado";
+
+    });
+
+</script>
+
+</body>
+</html>
