@@ -79,8 +79,8 @@ const eventos = [
     },
 
     {
-        inicio: "11-09",
-        fin: "11-09",
+        inicio: "05-03",
+        fin: "05-03",
         titulo: "Estreno de Oliver y Benji",
         descripcion: "Hoy en 1990 se estrenó la serie de Oliver y Benji en España."
     },
