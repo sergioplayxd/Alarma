@@ -33,14 +33,14 @@ const eventos = [
         inicio: "06-12",
         fin: "06-12",
         titulo: "Día de la Constitución Española",
-        descripcion: "Hoy se celebra el Día de la Constitución Española."
+        descripcion: "Hoy se celebra el Día de la Constitución Española de 1978."
     },
 
     {
         inicio: "09-10",
         fin: "09-10",
         titulo: "9 d'Octubre",
-        descripcion: "Hui és el Dia de la Comunitat Valenciana."
+        descripcion: "Hoy es el Día de la Comunitat Valenciana."
     },
 
     {
@@ -63,7 +63,55 @@ const eventos = [
         titulo: "Fallas",
         descripcion: "Hoy son Fallas."
     },
+   
+    {
+        inicio: "28-12",
+        fin: "28-12",
+        titulo: "Día de los Santos Inocentes",
+        descripcion: "Hoy es el Día para hacer bromas a tus amigos o quien quieras."
+    },
 
+    {
+        inicio: "11-09",
+        fin: "11-09",
+        titulo: "Diada de Cataluña",
+        descripcion: "Hoy es el Día de la Comunidad Autonoma de Cataluña."
+    },
+
+    {
+        inicio: "11-09",
+        fin: "11-09",
+        titulo: "Estreno de Oliver y Benji",
+        descripcion: "Hoy en 1990 se estrenó la serie de Oliver y Benji en España."
+    },
+
+   {
+        inicio: "23-12",
+        fin: "23-12",
+        titulo: "Estreno de Doraemon",
+        descripcion: "Hoy en 1993 se estrenó la serie de Doraemon en España."
+    },
+
+    {
+        inicio: "19-03",
+        fin: "19-03",
+        titulo: "Primera Constitucion Española",
+        descripcion: "Hoy en 1820 se creó <La Pepa> siendo esta la Primera Constitucion de España."
+    },
+
+    {
+        inicio: "24-03",
+        fin: "24-03",
+        titulo: "Estreno de Inazuma Eleven",
+        descripcion: "Hoy en 2010 se estrenó la serie de Inazuma Eleven en España."
+    },
+
+    {
+        inicio: "23-04",
+        fin: "23-04",
+        titulo: "Estreno de Shin Chan",
+        descripcion: "Hoy en 2001 se estrenó la serie de Shin Chan en España."
+    },
     {
         inicio: "25-12",
         fin: "25-12",
